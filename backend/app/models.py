@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 
+
 class RecipeRequest(BaseModel):
     recipe_text: str
 

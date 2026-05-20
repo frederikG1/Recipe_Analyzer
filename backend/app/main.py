@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-from app.models import RecipeRequest, AnalysisResponse, Ingredient, NutritionTotals
+
+from app.models import AnalysisResponse, Ingredient, NutritionTotals, RecipeRequest
 
 app = FastAPI()
 
