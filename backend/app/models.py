@@ -3,6 +3,11 @@ from pydantic import BaseModel
 
 class RecipeRequest(BaseModel):
     recipe_text: str
+    
+class ParsedIngredient(BaseModel):
+    name: str
+    amount: float | None = None
+    unit: str | None = None
 
 class Ingredient(BaseModel):
     name: str

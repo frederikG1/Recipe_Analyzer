@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 
+from app.llm_client import extract_ingredients
 from app.models import AnalysisResponse, Ingredient, NutritionTotals, RecipeRequest
 
 app = FastAPI()
@@ -7,25 +8,26 @@ app = FastAPI()
 
 @app.post("/analyze", response_model=AnalysisResponse)
 async def analyze(request: RecipeRequest) -> AnalysisResponse:
-    # Dummy-data - vi ignorerer request.recipe_text for nu
-    dummy_ingredient = Ingredient(
-        name="æg",
-        amount=2,
-        unit="stk",
-        calories=140,
-        protein_g=12,
-        carbs_g=1,
-        fat_g=10,
+    parsed_ingredients = await extract_ingredients(request.recipe_text)
+
+    ingredients = [
+        Ingredient(
+            name=p.name,
+            amount=p.amount,
+            unit=p.unit,
+            calories=0.0,
+            protein_g=0.0,
+            carbs_g=0.0,
+            fat_g=0.0,
+        )
+        for p in parsed_ingredients
+    ]
+
+    totals = NutritionTotals(
+        calories=0.0,
+        protein_g=0.0,
+        carbs_g=0.0,
+        fat_g=0.0,
     )
 
-    dummy_totals = NutritionTotals(
-        calories=140,
-        protein_g=12,
-        carbs_g=1,
-        fat_g=10,
-    )
-
-    return AnalysisResponse(
-        ingredients=[dummy_ingredient],
-        totals=dummy_totals,
-    )
+    return AnalysisResponse(ingredients=ingredients, totals=totals)
