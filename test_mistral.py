@@ -20,7 +20,7 @@ async def main() -> None:
         print(f"\n--- Opskrift: {recipe} ---")
         ingredients = await extract_ingredients(recipe)
         for ing in ingredients:
-            print(f"  {ing.name}: amount={ing.amount}, unit={ing.unit}")
+            print(f"  {ing.name} ({ing.name_en}) -> USDA: {ing.name_usda}, amount={ing.amount}, unit={ing.unit}")
 
 
 if __name__ == "__main__":

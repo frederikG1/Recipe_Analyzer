@@ -6,6 +6,8 @@ class RecipeRequest(BaseModel):
     
 class ParsedIngredient(BaseModel):
     name: str
+    name_en: str
+    name_usda: str | None = None
     amount: float | None = None
     unit: str | None = None
 
