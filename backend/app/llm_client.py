@@ -40,7 +40,7 @@ Når brugeren sender en opskrift, returnér et JSON-objekt med følgende struktu
 Regler:
 - name: ingrediensens navn på dansk, i ental, grundform (fx "tomat" ikke "tomater")
 - name_en: samme ingrediens på engelsk, i ental, så generisk som muligt
-- name_usda: VÆLG det navn fra USDA-listen nedenfor der bedst matcher ingrediensen. Hvis intet i listen er en rimelig match, sæt til null. Tænk ikke kun på string-lighed - tænk på om det er den SAMME fødevare. Fx "butter" matcher "Butter, salted" men IKKE "Peanut butter, smooth style". Fx "salt" har intet rimelig match i listen og bør være null
+- name_usda: VÆLG det navn fra USDA-listen nedenfor der bedst matcher ingrediensen. Hvis intet i listen er en rimelig match, sæt til null. Tænk ikke kun på string-lighed - tænk på om det er den SAMME fødevare. Fx "butter" matcher "Butter, salted" men IKKE "Peanut butter, smooth style". Fx "salt" har intet rimelig match i listen og bør være null. Fx "pasta" matcher "Pasta, dry, unenriched". Fx "spaghetti" matcher også "Pasta, dry, unenriched" (begge er pasta). VIGTIGT: name_usda SKAL være et navn der står EKSAKT i listen ovenfor. Hvis du er i tvivl, sæt name_usda til null. Det er bedre at sige null end at gætte et navn der ikke findes.
 - amount: tal. "en teskefuld" = 1, "en knivspids" = 0.25.
 - unit: SI-enhed eller almindelig enhed: "g", "ml", "stk", "tsk", "spsk", "dl".
 - Hvis mængde ikke kan udledes, sæt amount til null.

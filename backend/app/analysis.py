@@ -39,6 +39,8 @@ def optimize_ingredient(parsed: ParsedIngredient) -> Ingredient:
         #Tjekker i DB efter navn der matcher det valgte
         match = df[df["name"] == parsed.name_usda]
         
+
+        
         if not match.empty:
             grams = to_grams(parsed.amount, parsed.unit)
             
