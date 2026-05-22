@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 
+from app.analysis import calculate_totals, optimize_ingredient
 from app.llm_client import extract_ingredients
 from app.models import AnalysisResponse, Ingredient, NutritionTotals, RecipeRequest
 
@@ -10,24 +11,9 @@ app = FastAPI()
 async def analyze(request: RecipeRequest) -> AnalysisResponse:
     parsed_ingredients = await extract_ingredients(request.recipe_text)
 
-    ingredients = [
-        Ingredient(
-            name=p.name,
-            amount=p.amount,
-            unit=p.unit,
-            calories=0.0,
-            protein_g=0.0,
-            carbs_g=0.0,
-            fat_g=0.0,
-        )
-        for p in parsed_ingredients
-    ]
-
-    totals = NutritionTotals(
-        calories=0.0,
-        protein_g=0.0,
-        carbs_g=0.0,
-        fat_g=0.0,
-    )
+    #"Optimizer" hver ingrediens med de rigtige makroer fra DB
+    ingredients = [optimize_ingredient(p) for p in parsed_ingredients]
+    
+    totals = calculate_totals(ingredients)
 
     return AnalysisResponse(ingredients=ingredients, totals=totals)
