@@ -7,7 +7,7 @@ En applikation der analyserer opskrifter og beregner kalorier samt makronærings
 - **Frontend:** Streamlit (port 8501)
 - **Backend:** FastAPI (port 8000)
 - **LLM:** Mistral API (parser opskrift + matcher mod database)
-- **Data:** USDA Foundation Foods, renset via pandas ETL-pipeline
+- **Data:** USDA Foundation Food
 
 ## Kom i gang
 
