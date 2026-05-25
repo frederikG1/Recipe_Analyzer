@@ -3,10 +3,12 @@
 from functools import lru_cache
 from pathlib import Path
 
+import os
 import pandas as pd
 
 #Path til nutrition.csv (3x parent fordi vi skal ud af app/nutrition.py)
-NUTRITION_CSV_PATH = Path(__file__).parents[2] / "data" / "nutrition.csv"
+_default_path = Path(__file__).parents[2] / "data" / "nutrition.csv"
+NUTRITION_CSV_PATH = Path(os.getenv("NUTRITION_CSV_PATH", str(_default_path)))
 
 
 #kører funktionen og gemmer resultatet 1 resultat i cache. Sparer tid
