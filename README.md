@@ -1,4 +1,4 @@
-# Heading 1 En applikation der analyserer og beregner kalorier samt makro-indhold for ingredienser ved hjælp af en LLM og fødevareoplsyninger tilgået via USDA FoodData Central
+# En applikation der analyserer og beregner kalorier samt makro-indhold for ingredienser ved hjælp af en LLM og fødevareoplsyninger tilgået via USDA FoodData Central
 
 1. Opstart
   Opret .env og kopier indhold fra .env.example
