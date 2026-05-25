@@ -4,9 +4,6 @@ from functools import lru_cache
 from pathlib import Path
 
 import pandas as pd
-from rapidfuzz import process, fuzz
-
-from app.models import Ingredient, ParsedIngredient
 
 #Path til nutrition.csv (3x parent fordi vi skal ud af app/nutrition.py)
 NUTRITION_CSV_PATH = Path(__file__).parents[2] / "data" / "nutrition.csv"

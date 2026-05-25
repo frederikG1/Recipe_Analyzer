@@ -2,7 +2,7 @@ from fastapi import FastAPI
 
 from app.analysis import calculate_totals, optimize_ingredient
 from app.llm_client import extract_ingredients
-from app.models import AnalysisResponse, Ingredient, NutritionTotals, RecipeRequest
+from app.models import AnalysisResponse, RecipeRequest
 
 app = FastAPI()
 

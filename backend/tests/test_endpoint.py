@@ -1,5 +1,5 @@
-from fastapi.testclient import TestClient
 from app.main import app
+from fastapi.testclient import TestClient
 
 client = TestClient(app)
 
@@ -33,4 +33,4 @@ def test_analyze_response_has_correct_structure() -> None:
 
 def test_analyze_rejects_missing_recipe_text() -> None:
     response = client.post("/analyze", json={})
-    assert response.status_code == 422  # Unprocessable Entity
+    assert response.status_code == 422  

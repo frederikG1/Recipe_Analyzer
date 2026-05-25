@@ -1,5 +1,4 @@
 import numpy as np
-import pandas as pd
 
 from app.models import Ingredient, NutritionTotals, ParsedIngredient
 from app.nutrition import load_nutrition_data
@@ -25,7 +24,8 @@ def to_grams(amount: float | None, unit: str | None) -> float | None:
     
     return amount*multiplier
 
-# Tager en ingrediens fra Mistral og tilføjer rigtige ernæringsværdier ved at slå op i USDA-databasen
+# Tager en ingrediens fra Mistral og tilføjer rigtige ernæringsværdier
+# ved at slå op i USDA-databasen
 def optimize_ingredient(parsed: ParsedIngredient) -> Ingredient:
     # Default-værdier hvis det ikke kan beregnes
     calories = 0.0
