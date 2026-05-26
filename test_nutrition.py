@@ -1,5 +1,3 @@
-"""Manuelt verifikationsscript for nutrition.py."""
-
 import sys
 from pathlib import Path
 

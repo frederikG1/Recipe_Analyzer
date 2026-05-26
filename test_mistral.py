@@ -1,5 +1,3 @@
-"""Manuelt verifikationsscript - kører IKKE som en del af pytest."""
-
 import asyncio
 import sys
 from pathlib import Path
