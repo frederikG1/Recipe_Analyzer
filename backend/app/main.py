@@ -1,8 +1,7 @@
-from fastapi import FastAPI
-
 from app.analysis import calculate_totals, optimize_ingredient
 from app.llm_client import extract_ingredients
 from app.models import AnalysisResponse, RecipeRequest
+from fastapi import FastAPI
 
 app = FastAPI()
 

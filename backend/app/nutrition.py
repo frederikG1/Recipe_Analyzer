@@ -1,9 +1,9 @@
 # Matcher ingrediensnavne mod USDA-dataen
 
+import os
 from functools import lru_cache
 from pathlib import Path
 
-import os
 import pandas as pd
 
 #Path til nutrition.csv (3x parent fordi vi skal ud af app/nutrition.py)

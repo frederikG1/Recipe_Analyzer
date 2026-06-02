@@ -1,6 +1,5 @@
 import pandas as pd
 
-
 NUTRIENT_IDS = {
     "calories": 1008,
     "protein_g": 1003,
@@ -58,5 +57,5 @@ print(f"Efter dropna: {len(result)} rækker tilbage")
 # Gem som ren CSV (uden index-kolonne)
 result.to_csv("data/nutrition.csv", index=False)
 print(f"\n {len(result)} sendt til nutrition.csv")
-print(f"\nFørste 5 rækker:")
+print("\nFørste 5 rækker:")
 print(result.head())

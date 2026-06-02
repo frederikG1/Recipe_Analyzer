@@ -3,10 +3,9 @@ import os
 from typing import Any
 
 import httpx
-from dotenv import load_dotenv
-
 from app.models import ParsedIngredient
 from app.nutrition import get_all_food_names
+from dotenv import load_dotenv
 
 load_dotenv()
 

@@ -1,5 +1,4 @@
 import numpy as np
-
 from app.models import Ingredient, NutritionTotals, ParsedIngredient
 from app.nutrition import load_nutrition_data
 
