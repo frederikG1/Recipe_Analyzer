@@ -89,3 +89,13 @@ recipe-analyzer/
 ├── docker-compose.yml
 └── pyproject.toml        # ruff, mypy, pytest config
 ```
+
+
+```mermaid
+graph LR
+    A[Streamlit Frontend] -->|HTTP POST| B[FastAPI Backend]
+    B -->|HTTP| C[Mistral API]
+    B -->|læs| D[(nutrition.csv)]
+    E[ETL-pipeline] -->|skriver| D
+    F[USDA rå data] -->|læs| E
+```
