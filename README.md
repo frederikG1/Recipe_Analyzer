@@ -7,7 +7,7 @@ En applikation der analyserer opskrifter og beregner kalorier samt makronærings
 - **Frontend:** Streamlit (port 8501)
 - **Backend:** FastAPI (port 8000)
 - **LLM:** Mistral API (parser opskrift + matcher mod database)
-- **Data:** USDA Foundation Food
+- **Data:** USDA Foundation Foods, renset via pandas ETL-pipeline
 
 ## Kom i gang
 
@@ -59,7 +59,7 @@ streamlit run frontend/app.py
 
 ```bash
 pytest                    # kør unit tests
-mypy backend/app          # type checks
+pyright backend/app       # type checks
 ruff check backend/       # linting
 ```
 
@@ -87,15 +87,36 @@ recipe-analyzer/
 │   └── nutrition.csv     # renset USDA-dataset
 ├── build_nutrition_data.py   # ETL-pipeline
 ├── docker-compose.yml
-└── pyproject.toml        # ruff, mypy, pytest config
+└── pyproject.toml        # ruff, pyright, pytest config
 ```
 
+## Arkitekturdiagram
 
-```mermaid
-graph LR
-    A[Streamlit Frontend] -->|HTTP POST| B[FastAPI Backend]
-    B -->|HTTP| C[Mistral API]
-    B -->|læs| D[(nutrition.csv)]
-    E[ETL-pipeline] -->|skriver| D
-    F[USDA rå data] -->|læs| E
+```
+┌──────────────────┐        ┌──────────────────┐        ┌─────────────┐
+│                  │  HTTP  │                  │  HTTP  │             │
+│   Streamlit      │ ──────>│    FastAPI       │ ──────>│  Mistral    │
+│   Frontend       │ <──────│    Backend       │ <──────│  LLM API    │
+│   (port 8501)    │  JSON  │   (port 8000)    │  JSON  │             │
+└──────────────────┘        └─────────┬────────┘        └─────────────┘
+                                      │
+                                      │ læser
+                                      ▼
+                            ┌──────────────────┐
+                            │  nutrition.csv   │
+                            │  (pandas)        │
+                            └──────────────────┘
+                                      ▲
+                                      │ bygget af
+                                      │
+                            ┌──────────────────┐
+                            │  ETL-pipeline    │
+                            │ (build_nutrition │
+                            │     _data.py)    │
+                            └──────────────────┘
+                                      ▲
+                                      │ læser
+                            ┌──────────────────┐
+                            │  USDA rå CSV'er  │
+                            └──────────────────┘
 ```
